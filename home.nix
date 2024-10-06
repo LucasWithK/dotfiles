@@ -28,6 +28,10 @@ in
     historyControl = ["ignoredups"];
   };
 
+  programs.direnv.enable = true;
+
+  programs.starship.enable = true;
+
   programs.ssh = {
     enable = true;
     extraConfig = builtins.readFile ./ssh/config;
