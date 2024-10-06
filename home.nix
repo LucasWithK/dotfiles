@@ -23,8 +23,6 @@
 
   programs.git = {
     enable = true;
-    userName = "IllusionaryFrog";
-    userEmail = "git@illusionaryfrog.com";
     extraConfig.init.defaultBranch = "main";
   };
 
