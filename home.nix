@@ -1,10 +1,14 @@
 { config, pkgs, ... }:
-
+let
+  username = "nixos";
+  homeDir = "/home/${username}";
+  dotDir = "${homeDir}/dotfiles";
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
+  home.username = username;
+  home.homeDirectory = homeDir;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -21,11 +25,18 @@
 
   programs.bash.enable = true;
 
+  programs.ssh = {
+    enable = true;
+    extraConfig = builtins.readFile ./ssh/config;
+  };
+
   programs.git = {
     enable = true;
-    userName = "IllusionaryFrog";
-    userEmail = "git@illusionaryfrog.com";
     extraConfig.init.defaultBranch = "main";
+    includes = [
+      { condition = "hasconfig:remote.*.url:git@illusionaryfrog.github.com:*/**"; path = "${dotDir}/git/illusionaryfrog"; }
+      { condition = "hasconfig:remote.*.url:git@lukashassler.github.com:*/**"; path = "${dotDir}/git/lukashassler"; }
+    ];
   };
 
   programs.helix = {
