@@ -31,7 +31,7 @@ in
     enable = true;
     historyControl = ["ignoredups"];
     shellAliases = {
-      devenv-init = "nix flake init --template github:cachix/devenv && direnv allow && echo .direnv >> .gitignore && git init";
+      devenv-init = "nix flake init --template github:cachix/devenv && direnv allow && echo .direnv >> .gitignore";
     };
   };
 
