@@ -23,9 +23,16 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  home.packages = [
+    # pkgs.name
+  ];
+
   programs.bash = {
     enable = true;
     historyControl = ["ignoredups"];
+    shellAliases = {
+      devenv-init = "nix flake init --template github:cachix/devenv && direnv allow";
+    };
   };
 
   programs.direnv.enable = true;
