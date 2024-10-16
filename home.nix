@@ -2,7 +2,7 @@
 let
   username = "nixos";
   homeDir = "/home/${username}";
-  dotDir = "${homeDir}/dotfiles";
+  dotDir = "${homeDir}/.dotfiles";
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -31,7 +31,7 @@ in
     enable = true;
     historyControl = ["ignoredups"];
     shellAliases = {
-      devenv-init = "nix flake init --template github:cachix/devenv && direnv allow";
+      devenv-init = "nix flake init --template github:cachix/devenv && direnv allow && echo .direnv >> .gitignore && git init";
     };
   };
 
