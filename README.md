@@ -11,3 +11,6 @@ My dotfiles for nixos WSL installation
 - Rebuild again using `sudo nixos-rebuild switch --flake ~/.dotfiles`
 - Replace the `url` in `~/.dotfiles/.git/config` with `git@illusionaryfrog.github.com:IllusionaryFrog/dotfiles.git`
 - Done
+
+# Info
+- Use `devenv-init` inside a folder to create a basic dev environment
