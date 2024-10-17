@@ -27,7 +27,7 @@ sudo mkdir -p /nix/var/nix/gcroots/per-user/$USER && sudo chown $USER /nix/var/n
 
 - Rebuild again, now using:
 ```bash
-sudo nixos-rebuild switch --flake ~/.dotfiles
+nix-shell -p git --run "sudo nixos-rebuild switch --flake ~/.dotfiles"
 ```
 
 - Replace the `url` in `~/.dotfiles/.git/config` with:
@@ -36,6 +36,3 @@ git@illusionaryfrog.github.com:IllusionaryFrog/dotfiles.git
 ```
 
 - Done!
-
-# Info
-- Use `devenv-init` inside a folder to create a basic dev environment.
