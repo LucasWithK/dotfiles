@@ -13,6 +13,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 sudo nixos-rebuild switch
 ```
 
+- Restart WSL in windows.
+
 - Clone the repository using:
 ```bash
 nix-shell -p git --run "git clone https://github.com/IllusionaryFrog/dotfiles.git ~/.dotfiles"
