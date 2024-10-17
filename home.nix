@@ -27,12 +27,21 @@ in
     # pkgs.name
   ];
 
+  programs.fish = {
+    enable = true;
+    functions = {
+      dev-init = "nix flake init --template github:cachix/devenv && direnv allow && echo .direnv >> .gitignore";
+      dev-new = "mkdir $argv[1] && cd $argv[1] && dev-init";
+    };
+    shellInit = ''
+      set fish_greeting
+    '';
+  };
+
   programs.bash = {
     enable = true;
     historyControl = ["ignoredups"];
-    shellAliases = {
-      devenv-init = "nix flake init --template github:cachix/devenv && direnv allow && echo .direnv >> .gitignore";
-    };
+    profileExtra = "exec fish";
   };
 
   programs.direnv.enable = true;
