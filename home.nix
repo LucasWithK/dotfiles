@@ -27,6 +27,8 @@ in
     # pkgs.name
   ];
 
+  xdg.enable = true;
+
   programs.fish = {
     enable = true;
     functions = {
@@ -44,9 +46,28 @@ in
     profileExtra = "exec fish";
   };
 
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
-  programs.starship.enable = true;
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    settings = {
+      default_shell = "fish";
+      default_layout = "compact";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      scan_timeout = 100;
+    };
+  };
 
   programs.ssh = {
     enable = true;
@@ -68,5 +89,9 @@ in
     settings = {
       editor.line-number = "relative";
     };
+    extraPackages = [
+      pkgs.nil
+      pkgs.marksman
+    ];
   };
 }
