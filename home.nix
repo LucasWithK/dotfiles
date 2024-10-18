@@ -53,11 +53,14 @@ in
 
   programs.zellij = {
     enable = true;
-    enableBashIntegration = true;
     enableFishIntegration = true;
     settings = {
       default_shell = "fish";
-      default_layout = "compact";
+      default_layout = "main";
+      default_mode = "locked";
+      mouse_mode = false;
+      layout_dir = "${dotDir}/zellij/layouts";
+      theme_dir = "${dotDir}/zellij/themes";
     };
   };
 
