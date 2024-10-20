@@ -50,6 +50,11 @@ nix-shell -p git --run "home-manager switch --flake ~/.dotfiles -b old"
 - Restart WSL in windows and done.
 
 ## Usage
+- Update home-manager config:
+```bash
+home-manager switch --flake ~/.dotfiles
+```
+
 - Update home-manager channel:
 ```bash
 nix-channel --update
