@@ -1,40 +1,56 @@
 # dotfiles
 
-My dotfiles for nixos WSL installation
+My dotfiles (for Debian on WSL).
 
-## Initial Setup
-- Enable the experimental flakes feature by adding the following line to `/etc/nixos/configuration.nix`:
-```nix
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
+## Setup
+- Initial updates and installs:
+```bash
+sudo apt-get upgrade && sudo apt-get update -y && sudo apt-get install curl xz-utils openssh-client -y
 ```
 
-- Rebuild with:
+- Enable systemd and disable windows path interop in WSL:
 ```bash
-sudo nixos-rebuild switch
+printf "[boot]\nsystemd=true\n[interop]\nappendWindowsPath = false\n" | sudo tee /etc/wsl.conf
 ```
 
 - Restart WSL in windows.
 
-- Clone the repository using:
+- Install nix (just accept everything):
+```bash
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+- Add user to trusted users and enable flakes:
+```bash
+printf "\ntrusted-users = root $USER\nexperimental-features = nix-command flakes\n" | sudo tee -a /etc/nix/nix.conf
+```
+
+- Add home-manager nix-channel and install it:
+```bash
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager && nix-channel --update && nix-shell '<home-manager>' -A install
+```
+
+- Download dotfiles repository:
 ```bash
 nix-shell -p git --run "git clone https://github.com/IllusionaryFrog/dotfiles.git ~/.dotfiles"
 ```
 
-- Add two ssh identity files for both account names (see `ssh/config` and `git/{name}`) and add them to github.
-
-- Create an owned gc folder for the user with:
-```bash
-sudo mkdir -p /nix/var/nix/gcroots/per-user/$USER && sudo chown $USER /nix/var/nix/gcroots/per-user/$USER
-```
-
-- Rebuild again, now using:
-```bash
-nix-shell -p git --run "sudo nixos-rebuild switch --flake ~/.dotfiles"
-```
-
-- Replace the `url` in `~/.dotfiles/.git/config` with:
+- Adjust configuration options in `flake.nix` (like `username`) and update git url in `.git/config` to:
 ```
 git@illusionaryfrog.github.com:IllusionaryFrog/dotfiles.git
 ```
 
-- Done!
+- Add two ssh identity files for both accounts (see `ssh/config` and `git/{name}`).
+
+- Switch to the new home-manager config:
+```bash
+nix-shell -p git --run "home-manager switch --flake ~/.dotfiles -b old"
+```
+
+- Restart WSL in windows and done.
+
+## Usage
+- Update home-manager channel:
+```bash
+nix-channel --update
+```
