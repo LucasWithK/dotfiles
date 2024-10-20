@@ -48,7 +48,7 @@ in
       default_layout = "main";
       default_mode = "locked";
       mouse_mode = false;
-      layout_dir = "${dotDir}/zellij/layouts";
+      layout_dir = "${dotDir}/zellij";
     };
   };
 
