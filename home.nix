@@ -1,6 +1,9 @@
-{ config, pkgs, username, stateVersion, ... }:
+{ config, pkgs, ... }:
 
 let
+  username = "wsl";
+  stateVersion = "24.05";
+
   homeDir = "/home/${username}";
   dotDir = "${homeDir}/.dotfiles";
 in
@@ -13,7 +16,7 @@ in
   programs.home-manager.enable = true;
 
   home.packages = [
-    # pkgs.name
+    pkgs.devenv
   ];
 
   xdg.enable = true;
@@ -21,8 +24,7 @@ in
   programs.fish = {
     enable = true;
     functions = {
-      dev-init = "nix flake init --template github:cachix/devenv && direnv allow && echo .direnv >> .gitignore";
-      dev-new = "mkdir $argv[1] && cd $argv[1] && dev-init";
+      devenv-new = "mkdir $argv[1] && cd $argv[1] && devenv init";
     };
     shellInit = ''
       set fish_greeting
@@ -42,7 +44,6 @@ in
 
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
     settings = {
       default_shell = "fish";
       default_layout = "main";
