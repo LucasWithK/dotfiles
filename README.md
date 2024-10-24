@@ -20,9 +20,9 @@ printf "[boot]\nsystemd=true\n[interop]\nappendWindowsPath = false\n" | sudo tee
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
-- Add user to trusted users and enable flakes:
+- Add user to trusted users:
 ```bash
-printf "\ntrusted-users = root $USER\nexperimental-features = nix-command flakes\n" | sudo tee -a /etc/nix/nix.conf
+printf "\ntrusted-users = root $USER\n" | sudo tee -a /etc/nix/nix.conf
 ```
 
 - Add home-manager nix-channel and install it:
@@ -35,16 +35,16 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/master.t
 nix-shell -p git --run "git clone https://github.com/IllusionaryFrog/dotfiles.git ~/.dotfiles"
 ```
 
-- Adjust configuration options in `flake.nix` (like `username`) and update git url in `.git/config` to:
+- Adjust configuration options in `home.nix` (like `username`) and update git url in `.git/config` to:
 ```
 git@illusionaryfrog.github.com:IllusionaryFrog/dotfiles.git
 ```
 
-- Add two ssh identity files for both accounts (see `ssh/config` and `git/{name}`).
+- Add two ssh identity files for both accounts (see `ssh/config` and `git/`).
 
 - Switch to the new home-manager config:
 ```bash
-nix-shell -p git --run "home-manager switch --flake ~/.dotfiles -b old"
+home-manager switch -f ~/.dotfiles/home.nix -b old
 ```
 
 - Restart WSL in windows and done.
@@ -52,7 +52,7 @@ nix-shell -p git --run "home-manager switch --flake ~/.dotfiles -b old"
 ## Usage
 - Update home-manager config:
 ```bash
-home-manager switch --flake ~/.dotfiles
+home-manager switch -f ~/.dotfiles/home.nix
 ```
 
 - Update home-manager channel:
