@@ -40,12 +40,12 @@ nix-shell -p git --run "git clone https://github.com/IllusionaryFrog/dotfiles.gi
 git@illusionaryfrog.github.com:IllusionaryFrog/dotfiles.git
 ```
 
-- Add two ssh identity files for both accounts (see `ssh/config` and `git/`).
-
 - Switch to the new home-manager config:
 ```bash
 home-manager switch -f ~/.dotfiles/home.nix -b old
 ```
+
+- Add two ssh identity files for both accounts (see `ssh/config` and `git/`).
 
 - Restart WSL in windows and done.
 
