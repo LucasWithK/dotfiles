@@ -5,7 +5,7 @@ My dotfiles (for Debian on WSL).
 ## Setup
 - Initial updates and installs:
 ```bash
-sudo apt-get upgrade && sudo apt-get update -y && sudo apt-get install curl xz-utils openssh-client -y
+sudo apt-get upgrade -y && sudo apt-get update -y && sudo apt-get install curl xz-utils openssh-client -y
 ```
 
 - Enable systemd and disable windows path interop in WSL:
