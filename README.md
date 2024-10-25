@@ -5,7 +5,7 @@ My dotfiles (for Debian on WSL).
 ## Setup
 - Initial updates and installs:
 ```bash
-sudo apt-get upgrade -y && sudo apt-get update -y && sudo apt-get install curl xz-utils openssh-client -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl xz-utils openssh-client -y
 ```
 
 - Enable systemd and disable windows path interop in WSL:
@@ -23,6 +23,11 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 - Add user to trusted users:
 ```bash
 printf "\ntrusted-users = root $USER\n" | sudo tee -a /etc/nix/nix.conf
+```
+
+- Restart the nix-daemon:
+```bash
+sudo systemctl restart nix-daemon
 ```
 
 - Add home-manager nix-channel and install it:
