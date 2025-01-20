@@ -2,7 +2,7 @@
 
 let
   username = "wsl";
-  stateVersion = "24.05";
+  stateVersion = "25.05";
 
   homeDir = "/home/${username}";
   dotDir = "${homeDir}/.dotfiles";

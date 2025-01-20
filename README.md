@@ -30,6 +30,11 @@ printf "\ntrusted-users = root $USER\n" | sudo tee -a /etc/nix/nix.conf
 sudo systemctl restart nix-daemon
 ```
 
+- Add unstable nixpkgs nix-channel:
+```bash
+nix-channel --add https://channels.nixos.org/nixpkgs-unstable nixpkgs
+```
+
 - Add home-manager nix-channel and install it:
 ```bash
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager && nix-channel --update && nix-shell '<home-manager>' -A install
@@ -60,7 +65,9 @@ home-manager switch -f ~/.dotfiles/home.nix -b old
 home-manager switch -f ~/.dotfiles/home.nix
 ```
 
-- Update home-manager channel:
+- Update home-manager and nixpkgs nix-channel:
 ```bash
 nix-channel --update
 ```
+
+- Remember to bump `stateVersion` in `home.nix`.
