@@ -43,7 +43,7 @@ in
   };
 
   programs.zellij = {
-    enable = true;
+    enable = false;
     settings = {
       default_shell = "fish";
       default_layout = "main";
