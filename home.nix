@@ -68,7 +68,12 @@ in
 
   programs.git = {
     enable = true;
-    extraConfig.init.defaultBranch = "main";
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = "true";
+      commit.template = "${dotDir}/git/commit";
+      core.editor = "hx";
+    };
     includes = [
       { condition = "hasconfig:remote.*.url:git@illusionaryfrog.github.com:*/**"; path = "${dotDir}/git/illusionaryfrog"; }
       { condition = "hasconfig:remote.*.url:git@lukashassler.github.com:*/**"; path = "${dotDir}/git/lukashassler"; }
