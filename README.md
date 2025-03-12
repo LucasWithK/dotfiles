@@ -1,6 +1,6 @@
 # dotfiles
 
-My dotfiles (for Debian on WSL).
+My dotfiles (for Debian using WSL).
 
 ## Setup
 - Initial updates and installs:
