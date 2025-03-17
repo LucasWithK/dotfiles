@@ -10,7 +10,7 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt install curl xz-utils open
 
 - Enable systemd and disable windows path interop in WSL:
 ```bash
-printf "[boot]\nsystemd=true\n[interop]\nappendWindowsPath = false\n" | sudo tee /etc/wsl.conf
+printf "[boot]\nsystemd=true\n[interop]\nappendWindowsPath = true\n" | sudo tee /etc/wsl.conf
 ```
 
 - Restart WSL in windows.

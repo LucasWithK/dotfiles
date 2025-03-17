@@ -13,6 +13,8 @@ in
 
   home.stateVersion = stateVersion;
 
+  nixpkgs.config.allowUnfree = true;
+
   programs.home-manager.enable = true;
 
   home.packages = [
@@ -34,7 +36,7 @@ in
   programs.bash = {
     enable = true;
     historyControl = ["ignoredups"];
-    profileExtra = "exec fish";
+    bashrcExtra = "exec fish";
   };
 
   programs.direnv = {
@@ -72,7 +74,7 @@ in
       init.defaultBranch = "main";
       pull.rebase = "true";
       commit.template = "${dotDir}/git/commit";
-      core.editor = "hx";
+      core.editor = "code --wait";
     };
     includes = [
       { condition = "hasconfig:remote.*.url:git@illusionaryfrog.github.com:*/**"; path = "${dotDir}/git/illusionaryfrog"; }
