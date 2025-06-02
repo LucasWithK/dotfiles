@@ -36,7 +36,7 @@ in
   programs.bash = {
     enable = true;
     historyControl = ["ignoredups"];
-    bashrcExtra = "exec fish";
+    #bashrcExtra = "exec fish";
   };
 
   programs.direnv = {
@@ -75,11 +75,15 @@ in
       pull.rebase = "true";
       commit.template = "${dotDir}/git/commit";
       core.editor = "code --wait";
+      user = {
+        name = "LucasWithK";
+        email = "176577210+LucasWithK@users.noreply.github.com";
+      };
     };
-    includes = [
-      { condition = "hasconfig:remote.*.url:git@illusionaryfrog.github.com:*/**"; path = "${dotDir}/git/illusionaryfrog"; }
-      { condition = "hasconfig:remote.*.url:git@lukashassler.github.com:*/**"; path = "${dotDir}/git/lukashassler"; }
-    ];
+    # includes = [
+    #   { condition = "hasconfig:remote.*.url:git@illusionaryfrog.github.com:*/**"; path = "${dotDir}/git/illusionaryfrog"; }
+    #   { condition = "hasconfig:remote.*.url:git@lukashassler.github.com:*/**"; path = "${dotDir}/git/lukashassler"; }
+    # ];
   };
 
   programs.helix = {
