@@ -13,7 +13,7 @@
     in
     {
       templates = nixpkgs.lib.genAttrs templates (template: {
-        description = "The ${template} template";
+        description = "The '${template}' template.";
         path = ./templates/${template};
       });
     };
