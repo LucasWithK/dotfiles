@@ -8,6 +8,8 @@
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f {
         pkgs = import nixpkgs { inherit system; };
       });
+
+      templates = builtins.attrNames (builtins.readDir ./templates);
     in
     {
       templates = nixpkgs.lib.genAttrs templates (template: {
